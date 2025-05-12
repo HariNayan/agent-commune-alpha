@@ -5,9 +5,10 @@ import { AgentCard } from "@/components/agent/AgentCard";
 import { AgentDetail } from "@/components/agent/AgentDetail";
 import { MessagingPanel } from "@/components/agent/MessagingPanel";
 import { TrustNetworkGraph } from "@/components/agent/TrustNetworkGraph";
+import { KnowledgePanel } from "@/components/knowledge/KnowledgePanel";
 import { Agent } from "@/types/agent";
 import { mockAgents } from "@/data/mockAgents";
-import { Shield, MessageSquare, Network } from "lucide-react";
+import { Shield, MessageSquare, Network, Brain } from "lucide-react";
 
 export function Dashboard() {
   const [selectedAgent, setSelectedAgent] = useState<Agent>(mockAgents[0]);
@@ -67,7 +68,7 @@ export function Dashboard() {
             </div>
             
             <Tabs defaultValue="messaging" className="w-full">
-              <TabsList className="grid w-full grid-cols-3">
+              <TabsList className="grid w-full grid-cols-4">
                 <TabsTrigger value="messaging" className="flex items-center gap-2">
                   <MessageSquare className="h-4 w-4" />
                   <span>Messaging</span>
@@ -79,6 +80,10 @@ export function Dashboard() {
                 <TabsTrigger value="network" className="flex items-center gap-2">
                   <Network className="h-4 w-4" />
                   <span>Network</span>
+                </TabsTrigger>
+                <TabsTrigger value="knowledge" className="flex items-center gap-2">
+                  <Brain className="h-4 w-4" />
+                  <span>Knowledge</span>
                 </TabsTrigger>
               </TabsList>
               
@@ -97,6 +102,10 @@ export function Dashboard() {
                   <p className="text-muted-foreground">Network visualization coming soon</p>
                   <p className="mt-2">Currently connected to 3 peer agents.</p>
                 </div>
+              </TabsContent>
+
+              <TabsContent value="knowledge" className="h-[500px]">
+                <KnowledgePanel activeAgent={selectedAgent} />
               </TabsContent>
             </Tabs>
           </div>
